@@ -36,33 +36,33 @@
 
 ### POST /film
 
- - [ ] Receber dados do filme
+ - [ x ] Receber dados do filme
 
- - [ ] Validar se o filme já existe pelo nome
+ - [ x ] Validar se o filme já existe pelo nome
 
- - [ ] Inserir no banco
+ - [ x ] Inserir no banco
 
 ### GET /film
 
- - [ ] Listar todos os filmes
+ - [ x ] Listar todos os filmes
 
- - [ ] Implementar filtro por name e author usando query params
+ - [ x ] Implementar filtro por name e author usando query params
 
 ### PUT /film/:name
 
- - [ ] Buscar filme pelo name
+ - [ x ] Buscar filme pelo name
 
- - [ ] Atualizar campos enviados no body
+ - [ x ] Atualizar campos enviados no body
 
 DELETE /film/:name
 
- - [ ] Deletar filme pelo name
+ - [ x ] Deletar filme pelo name
 
 4. Validações
 
- - [ ] Não permitir filmes duplicados (mesmo name)
+ - [ x ] Não permitir filmes duplicados (mesmo name)
 
- - [ ] Retornar mensagens claras de erro e sucesso
+ - [ x ] Retornar mensagens claras de erro e sucesso
 
 5. Testes
 

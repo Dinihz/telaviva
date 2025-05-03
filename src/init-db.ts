@@ -1,6 +1,6 @@
 import sql from "./db";
 
-async function createTable() {
+export async function createTable() {
   try {
     await sql`
       CREATE TABLE IF NOT EXISTS films (
@@ -12,11 +12,10 @@ async function createTable() {
       );
     `;
 
-    console.log("Tabela 'films' criada com sucesso!");
+    console.log("✅ Tabela 'films' verificada/criada com sucesso!");
   } catch (error) {
-    console.error("Erro ao criar tabela:", error);
+    console.error("❌ Erro ao criar tabela:", error);
+    process.exit(1)
   }
 }
-
-createTable();
 

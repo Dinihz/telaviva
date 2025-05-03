@@ -1,6 +1,7 @@
 import fastify from "fastify"
 import sql from './db';
 import { DatabasePostgres } from "./database-postgres";
+import { createTable } from "./init-db";
 
 const server = fastify()
 const database = new DatabasePostgres()
@@ -71,8 +72,15 @@ server.get('/test-db', async () => {
   return { db_time: result[0].now };
 });
 
+async function start() {
+  await createTable()
 
+  server.listen({ port: 3000 }).then(() => {
+    console.log('HTTP server running.')
+  }).catch(err => {
+    console.error('Erro ao iniciar o servidor:', err)
+    process.exit(1)
+  })
+}
 
-server.listen({ port: 3000 }).then(() => {
-  console.log('HTTP server running.')
-})
+start()
