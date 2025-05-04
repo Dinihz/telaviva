@@ -1,7 +1,7 @@
-import postgres from 'postgres'
-import dotenv from 'dotenv'
+import postgres from "postgres";
+import dotenv from "dotenv";
 
-dotenv.config()
+dotenv.config();
 
 const sql = postgres({
   host: process.env.DATABASE_HOST,
@@ -9,7 +9,6 @@ const sql = postgres({
   username: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_NAME,
-})
+});
 
-export default sql
-
+export default sql;

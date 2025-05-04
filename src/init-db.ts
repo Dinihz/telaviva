@@ -15,7 +15,6 @@ export async function createTable() {
     console.log("Table 'films' verified/created successfully!");
   } catch (error) {
     console.error("Error creating table:", error);
-    process.exit(1)
+    process.exit(1);
   }
 }
-
