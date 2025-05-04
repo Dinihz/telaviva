@@ -12,9 +12,9 @@ export async function createTable() {
       );
     `;
 
-    console.log("✅ Tabela 'films' verificada/criada com sucesso!");
+    console.log("Table 'films' verified/created successfully!");
   } catch (error) {
-    console.error("❌ Erro ao criar tabela:", error);
+    console.error("Error creating table:", error);
     process.exit(1)
   }
 }

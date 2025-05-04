@@ -31,26 +31,32 @@ server.get('/film', async (request, reply) => {
 
   const films = await database.list(search)
 
-  return reply.send(films)
+  const formattedFilms = films.map(film => ({
+    ...film,
+    release_date: film.release_date?.toISOString().split('T')[0]
+  }))
+
+  return reply.send(formattedFilms)
 })
 
-server.post('/film/:name', async (request, reply) => {
+server.put('/film/:name', async (request, reply) => {
+  const { name: paramName } = request.params as { name: string }
   const { name, author, description, release_date } = request.body as {
-    name: string
-    author: string
+    name?: string
+    author?: string
     description?: string
     release_date?: string
   }
 
-  const filmAlredyExist = await database.findByName(name)
+  const film = await database.findByName(paramName)
 
-  if (filmAlredyExist) {
-    return reply.status(400).send({ error: 'Film already exists.' })
+  if (!film) {
+    return reply.status(404).send({ error: 'Film not found.' })
   }
 
-  await database.create({ name, author, description, release_date })
+  await database.update(paramName, { name, author, description, release_date })
 
-  return reply.status(201).send({ message: 'Film created successfully.' })
+  return reply.send({ message: 'Film updated successfully.' })
 })
 
 server.delete('/film/:name', async (request, reply) => {
@@ -78,7 +84,7 @@ async function start() {
   server.listen({ port: 3000 }).then(() => {
     console.log('HTTP server running.')
   }).catch(err => {
-    console.error('Erro ao iniciar o servidor:', err)
+    console.error('Error starting the server:', err)
     process.exit(1)
   })
 }
