@@ -1,7 +1,10 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import fastify from "fastify";
 import sql from "./db";
 import { DatabasePostgres } from "./database-postgres";
-import { createTable } from "./init-db";
+import { up as createFilmsTable } from "../migrations/001_create_films_table";
 
 const server = fastify();
 const database = new DatabasePostgres();
@@ -78,7 +81,7 @@ server.get("/test-db", async () => {
 });
 
 async function start() {
-  await createTable();
+  await createFilmsTable();
 
   server
     .listen({ port: 3000 })
